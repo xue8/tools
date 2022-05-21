@@ -13,7 +13,15 @@ setw -g mode-keys vi # 开启vi风格后，支持vi的C-d、C-u、hjkl等快捷�
 
 ```shell
 alias k="kubectl"
-alias kg="kubectl get po -A -owide | grep "
-alias ka="kubectl get po -A -owide"
-alias kgs="kubectl get -A -owide svc | grep "
+alias pa='kubectl get pod --all-namespaces -o wide'
+alias pag='kubectl get pod --all-namespaces -o wide |grep '
+alias pagw='kubectl get pod --all-namespaces -o wide -w |grep'
+alias paw='kubectl get pod --all-namespaces -o wide -w '
+alias pd='kubectl -n tce describe pod'
+alias sa='kubectl get svc --all-namespaces -o wide'
+alias sag='kubectl get svc --all-namespaces -o wide |grep '
+alias sagw='kubectl get svc --all-namespaces -o wide -w |grep'
+alias saw='kubectl get svc --all-namespaces -o wide -w '
+alias kg='kubectl get pod --all-namespaces -o wide |grep '
+alias kgs='kubectl get svc --all-namespaces -o wide |grep '
 ```
