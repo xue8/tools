@@ -7,6 +7,7 @@
 
 ```shell
 setw -g mode-keys vi # 开启vi风格后，支持vi的C-d、C-u、hjkl等快捷键
+tmux_conf_copy_to_os_clipboard # 开启 C-v、C-b复制
 ```
 
 ### kubectl
