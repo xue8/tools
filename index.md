@@ -26,3 +26,26 @@ alias saw='kubectl get svc --all-namespaces -o wide -w '
 alias kg='kubectl get pod --all-namespaces -o wide |grep '
 alias kgs='kubectl get svc --all-namespaces -o wide |grep '
 ```
+### Docker
+
+```shell
+#!/bin/bash
+
+set -ue
+
+POD_NAME=${POD_NAME:-"log"}
+UTIL_IMAGE=${UTIL_IMAGE:-"nginx"}
+HOST_PORT=${HOST_PORT:-22}
+
+pod_ns=$(kubectl get po -A | grep ${POD_NAME} | head -1 | awk '{print $1}')
+pod_name=$(kubectl get po -A | grep ${POD_NAME} | head -1 | awk '{print $2}')
+host_ip=$(kubectl get po -A -owide | grep ${POD_NAME} | head -1 | awk '{print $8}')
+
+cmd1="container_id=\$(docker ps | grep ${pod_name} | grep -v 'pause' | awk '{print \$1}')"
+cmd2="util_image=\$(kubectl get deploy -oyaml -n tce ${UTIL_IMAGE} | grep 'image:' | grep -v '#'| sed 's/ //g' | sed 's/image://g')"
+cmd3="echo \"enter ${pod_name} using \${util_image}\""
+cmd4="docker run -it --pid=container:\${container_id} --net=container:\${container_id} \${util_image} /bin/bash"
+
+echo "login ${host_ip}, pod_ns ${pod_ns} pod_name ${pod_name} port ${HOST_PORT}"
+ssh root@${host_ip} -p ${HOST_PORT} -t "set -x; ${cmd1}; ${cmd2}; ${cmd3}; ${cmd4}"
+```
