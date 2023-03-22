@@ -49,3 +49,10 @@ cmd4="docker run -it --pid=container:\${container_id} --net=container:\${contain
 echo "login ${host_ip}, pod_ns ${pod_ns} pod_name ${pod_name} port ${HOST_PORT}"
 ssh root@${host_ip} -p ${HOST_PORT} -t "set -x; ${cmd1}; ${cmd2}; ${cmd3}; ${cmd4}"
 ```
+
+## Alfred
+- [alfred-workflows/awesome-alfred-workflows: A curated list of awesome alfred workflows](https://github.com/alfred-workflows/awesome-alfred-workflows)
+- [jopemachine/alfred-chromium-workflow: Chromium based browser workflow for Alfred 5](https://github.com/jopemachine/alfred-chromium-workflow)
+- [bchatard/alfred-jetbrains: Alfred4 workflow to easily open your projects with your favorite JetBrains product.](https://github.com/bchatard/alfred-jetbrains)
+- [xue8/alfred-tools](https://github.com/xue8/alfred-tools)
+
